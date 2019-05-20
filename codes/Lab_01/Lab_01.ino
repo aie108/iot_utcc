@@ -4,46 +4,23 @@
 #include <MySQL_Cursor.h>
 #include <DHT.h>
 
-//#define DHTTYPE DHT11   // DHT 11
-//#define DHTTYPE DHT21   // DHT 21 (AM2301)
 #define DHTTYPE DHT22     // DHT 22  (AM2302), AM2321
 
 // Wireless Network & Authentication
 WiFiClient client; 
-//char* ssid     = "TA_2.4G";
-//char* password = "Wearefamily.";
-
-//char* ssid     = "UTCC_CPE";
-//char* password = "iyd9kmujl6f";
-//char* password = "c5thasc3vd";
 
 char* ssid     = "UTCC_CPE2";
 char* password = "kn2hyn6e01";
 
 // MySQL Server
-IPAddress server_addr(103,13,231,13);
-char user[] = "iot";
-char dbPassword[] = "IoT2018";
-//IPAddress server_addr(192,168,1,11);
-//char user[] = "pi";
-//char dbPassword[] = "Suparerk15";
+IPAddress server_addr(xxx,xxx,xxx,xxx);
+char user[] = "xxx";
+char dbPassword[] = "xxx";
 char query[128];
 MySQL_Connection dbConnector((Client *)&client);
 
 const char INSERT_DATA[] = "INSERT INTO MySimpleIoT.measured_data VALUEs (NULL, %d, %f, %f, NULL)";
-int location_id = 2;
-//+----+-------------------+--------------------------------------------+
-//| id | name              | description                                |
-//+----+-------------------+--------------------------------------------+
-//|  1 | Office            | Office @ Level 3, Building 7, UTCC         |
-//|  2 | Mining Room       | Mining Room @ Level 3, Building 7, UTCC    |
-//|  3 | Mining Room #1    | Mining Room #1 @ Level 3, Building 7, UTCC |
-//|  4 | Mining Room #2    | Mining Room #2 @ Level 3, Building 7, UTCC |
-//|  5 | Mining Room #3    | Mining Room #3 @ Level 3, Building 7, UTCC |
-//|  6 | Mining Room @ Mom | Mining Room #3 @ Mom's House.              |
-//|  7 | My Room           | Testing @ the Niche                        |
-//+----+-------------------+--------------------------------------------+
-
+int location_id = 1;
 
 // DHT Sensor
 const int DHTPin = 4;
@@ -124,5 +101,5 @@ void loop() {
   MySQL_Cursor *cursor = new MySQL_Cursor(&dbConnector);
   cursor->execute(query);
   delete cursor;
-  delay(300000);
+  delay(60000);
 }
